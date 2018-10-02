@@ -1,3 +1,5 @@
+import './index.css';
+
 window.onload = () => {
   // create a new div
   var newDiv = document.createElement("div");
