@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+  devtool: "source-map",
   entry: {
     bundle: './src/app.js'
   },
@@ -14,7 +15,15 @@ module.exports = {
         enforce: 'pre',
         test: /\.js$/,
         exclude: /node_modules/,
-        use: 'eslint-loader'
+        use: [
+          {
+            loader:'eslint-loader',
+            options: {
+              emitWarning: true,
+            }
+          }
+        ]
+
       },
       {
         test: /\.js$/,

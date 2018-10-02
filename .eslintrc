@@ -7,5 +7,9 @@
   "globals": {
     "document": true,
     "window": true,
+    "console": true
+  },
+  "rules": {
+    "no-console": 0
   }
 }
