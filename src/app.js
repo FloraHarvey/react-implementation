@@ -1,14 +1,13 @@
 import './index.css';
+import ReactDOM from '../my-reactDOM';
+
+// TODO: make the following work:
+// const element = React.createElement('div', null, `Hello World`);
+// ReactDOM.render(element, document.getElementById('root'));
 
 window.onload = () => {
-  // create a new div
-  const newDiv = document.createElement('div');
-  // and give it some some text
-  const newContent = document.createTextNode('Some text');
-
-  // add the text node to the newly created div
-  newDiv.appendChild(newContent);
-
-  // add the newly created element and its content into the DOM
-  document.body.appendChild(newDiv);
+  ReactDOM.render(
+    { type: 'div', children: ['Hello', 'world', 'again'] },
+    document.getElementById('root')
+  );
 };
