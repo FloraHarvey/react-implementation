@@ -5,5 +5,8 @@
         "browsers": ["Chrome >= 55"]
       }
     }
-  ]]
+  ]],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties"
+  ]
 }

@@ -6,13 +6,14 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server --content-base dist --hot",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "lint": "eslint ./src --ext .js"
   },
   "author": "Flora Harvey",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
     "babel-preset-es2015": "^6.24.1",
     "css-loader": "^1.0.0",
@@ -20,6 +21,7 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-loader": "^2.1.1",
     "eslint-plugin-import": "^2.14.0",
+    "jest": "^23.6.0",
     "style-loader": "^0.23.0",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2",
@@ -27,6 +29,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
     "babel-preset-env": "^1.7.0"
   }
 }

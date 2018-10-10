@@ -3,6 +3,7 @@
     "ecmaVersion": 6,
     "sourceType": "module"
   },
+  "parser": "babel-eslint",
   "extends": "airbnb-base",
   "globals": {
     "document": true,
@@ -10,6 +11,10 @@
     "console": true
   },
   "rules": {
-    "no-console": 0
+    "no-console": 0,
+    "import/no-named-as-default": 0,
+    "import/no-named-as-default-member": 0,
+    "arrow-parens": 0,
+    "padded-blocks": 0
   }
 }
