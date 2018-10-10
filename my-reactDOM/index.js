@@ -11,12 +11,11 @@ class ReactDOM {
   }
 
   static createDomElement = (element) => {
-    let el;
-    if (typeof element.type === 'string') {
-      el = document.createElement(element.type);
-    }
-    if (element.children) {
-      element.children.forEach(child => {
+    const component = typeof element === 'function' ? element() : element;
+    const el = document.createElement(component.type);
+
+    if (component.children) {
+      component.children.forEach(child => {
         if (typeof child === 'string') {
           const childElement = document.createTextNode(child);
           el.appendChild(childElement);

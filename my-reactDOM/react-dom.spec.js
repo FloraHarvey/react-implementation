@@ -38,4 +38,21 @@ describe('render', () => {
     expect(document.getElementById('root').firstElementChild.textContent).toEqual('Hello world Second child');
   });
 
+  it('given an element function it renders the element', () => {
+    document.body.innerHTML =
+      '<div id="root">' +
+      '</div>';
+
+    const element = () => ({
+      type: 'div',
+      children: ['Hello world']
+    });
+
+    ReactDOM.render(
+      element,
+      document.getElementById('root')
+    );
+
+    expect(document.getElementById('root').firstElementChild.textContent).toEqual('Hello world');
+  });
 })

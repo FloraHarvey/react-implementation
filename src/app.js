@@ -8,7 +8,7 @@ import React from '../my-react';
 
 window.onload = () => {
   const child = React.createElement('div', null, 'Child element');
-  const element = React.createElement('div', null, child);
+  const element = () => React.createElement('div', null, child);
   ReactDOM.render(
     element,
     document.getElementById('root'),
