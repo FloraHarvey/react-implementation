@@ -55,4 +55,26 @@ describe('render', () => {
 
     expect(document.getElementById('root').firstElementChild.textContent).toEqual('Hello world');
   });
+
+  it('given an element class it instantiates the class and calls its render function', () => {
+    document.body.innerHTML =
+      '<div id="root">' +
+      '</div>';
+
+    class Component {
+      render() {
+        return {
+          type: 'div',
+          children: ['Hello world']
+        };
+      }
+    }
+
+    ReactDOM.render(
+      Component,
+      document.getElementById('root')
+    );
+
+    expect(document.getElementById('root').firstElementChild.textContent).toEqual('Hello world');
+  });
 })

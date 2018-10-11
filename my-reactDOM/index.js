@@ -11,18 +11,29 @@ class ReactDOM {
   }
 
   static createDomElement = (element) => {
-    const component = typeof element === 'function' ? element() : element;
+    let component;
+
+    if (typeof element === 'function') {
+      try {
+        component = element();
+      } catch {
+        const instance = new element;
+        component = instance.render();
+      }
+    } else {
+      component = element;
+    }
+
     const el = document.createElement(component.type);
 
     if (component.children) {
       component.children.forEach(child => {
-        if (typeof child === 'string') {
-          const childElement = document.createTextNode(child);
-          el.appendChild(childElement);
-        } else {
-          const childElement = ReactDOM.createDomElement(child);
-          el.appendChild(childElement);
-        }
+
+        const childElement = typeof child === 'string'
+          ? document.createTextNode(child)
+          : ReactDOM.createDomElement(child);
+
+        el.appendChild(childElement);
       });
     }
     return el;
