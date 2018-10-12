@@ -29,8 +29,8 @@ class ReactDOM {
       ? document.createElement(component)
       : ReactDOM.createDomElement(component);
 
-    if (reactElement.children) {
-      reactElement.children.forEach(child => {
+    if (reactElement.props && reactElement.props.children) {
+      reactElement.props.children.forEach(child => {
 
         const childElement = typeof child === 'string'
           ? document.createTextNode(child)

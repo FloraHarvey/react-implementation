@@ -1,10 +1,16 @@
 class React {
 
-  static createElement(type, props, ...children) {
+  static createElement(type, config, ...children) {
+    let props = {};
+    if (config) {
+      props = config;
+    }
     const element = {
       type,
-      props,
-      children,
+      props: {
+        ...props,
+        children,
+      },
     };
 
     return element;
