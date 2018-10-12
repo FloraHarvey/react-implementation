@@ -43,13 +43,13 @@ describe('render', () => {
       '<div id="root">' +
       '</div>';
 
-    const element = () => ({
+    const Element = () => ({
       type: 'div',
       children: ['Hello world']
     });
 
     ReactDOM.render(
-      element,
+      { type: Element },
       document.getElementById('root')
     );
 
@@ -71,10 +71,11 @@ describe('render', () => {
     }
 
     ReactDOM.render(
-      Component,
+      { type: Component },
       document.getElementById('root')
     );
 
     expect(document.getElementById('root').firstElementChild.textContent).toEqual('Hello world');
   });
+
 })

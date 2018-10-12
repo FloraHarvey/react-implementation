@@ -10,7 +10,7 @@ window.onload = () => {
   const child = React.createElement('div', null, 'Child element');
   const element = () => React.createElement('div', null, child);
   ReactDOM.render(
-    element,
+    { type: element },
     document.getElementById('root'),
   );
 };

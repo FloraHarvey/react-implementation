@@ -1,45 +1,46 @@
-// const element = {
-//   type: 'div',
-//   children: ['hello', 'world'],
-// }
-
 class ReactDOM {
 
-  static render(element, container) {
-    const elementToRender = this.createDomElement(element);
+  static render(reactElement, container) {
+    const elementToRender = ReactDOM.createDomElement(reactElement);
     container.appendChild(elementToRender);
   }
 
-  static createDomElement = (element) => {
+  static getElementOrComponent = (reactElement) => {
     let component;
 
-    if (typeof element === 'function') {
+    if (typeof reactElement.type === 'function') {
       try {
-        component = element();
+        component = reactElement.type();
       } catch {
-        const instance = new element;
+        const instance = new reactElement.type();
         component = instance.render();
       }
     } else {
-      component = element;
+      component = reactElement.type;
     }
 
-    const el = document.createElement(component.type);
+    return component;
+  }
 
-    if (component.children) {
-      component.children.forEach(child => {
+  static createDomElement = (reactElement) => {
+    const component = ReactDOM.getElementOrComponent(reactElement);
+
+    const domElement = typeof component === 'string'
+      ? document.createElement(component)
+      : ReactDOM.createDomElement(component);
+
+    if (reactElement.children) {
+      reactElement.children.forEach(child => {
 
         const childElement = typeof child === 'string'
           ? document.createTextNode(child)
           : ReactDOM.createDomElement(child);
 
-        el.appendChild(childElement);
+        domElement.appendChild(childElement);
       });
     }
-    return el;
+    return domElement;
   }
-
-
 }
 
 export default ReactDOM;
