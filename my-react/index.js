@@ -1,20 +1,7 @@
-class React {
+import { createElement } from './createElement';
 
-  static createElement(type, config, ...children) {
-    let props = {};
-    if (config) {
-      props = config;
-    }
-    const element = {
-      type,
-      props: {
-        ...props,
-        children,
-      },
-    };
-
-    return element;
-  }
-}
+const React = {
+  createElement,
+};
 
 export default React;
