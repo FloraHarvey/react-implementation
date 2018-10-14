@@ -44,7 +44,7 @@ describe('render', () => {
     expect(document.getElementById('root').firstElementChild.textContent).toEqual('Hello world Second child');
   });
 
-  it('given an element function it renders the element', () => {
+  it('given a functional component it renders the component', () => {
     document.body.innerHTML =
       '<div id="root">' +
       '</div>';
@@ -64,7 +64,7 @@ describe('render', () => {
     expect(document.getElementById('root').firstElementChild.textContent).toEqual('Hello world');
   });
 
-  it('given an element class it instantiates the class and calls its render function', () => {
+  it('given a component class it instantiates the class and calls its render function', () => {
     document.body.innerHTML =
       '<div id="root">' +
       '</div>';
@@ -82,6 +82,50 @@ describe('render', () => {
 
     ReactDOM.render(
       { type: Component },
+      document.getElementById('root')
+    );
+
+    expect(document.getElementById('root').firstElementChild.textContent).toEqual('Hello world');
+  });
+
+  it('given a functional component with props it passes through the props when calling the function', () => {
+    document.body.innerHTML =
+      '<div id="root">' +
+      '</div>';
+
+    const Element = (props) => ({
+      type: 'div',
+      props: {
+        children: [`Hello ${props.name}`],
+      }
+    });
+
+    ReactDOM.render(
+      { type: Element, props: { name: 'world' } },
+      document.getElementById('root')
+    );
+
+    expect(document.getElementById('root').firstElementChild.textContent).toEqual('Hello world');
+  });
+
+  it('given a class component with props it instantiates the class and sets props as an instance variable', () => {
+    document.body.innerHTML =
+      '<div id="root">' +
+      '</div>';
+
+      class Component {
+        render() {
+          return {
+            type: 'div',
+            props: {
+              children: [`Hello ${this.props.name}`],
+            }
+          };
+        }
+      }
+
+    ReactDOM.render(
+      { type: Component, props: { name: 'world' } },
       document.getElementById('root')
     );
 

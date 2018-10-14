@@ -5,12 +5,14 @@ export const render = (reactElement, container) => {
 
 const getElementOrComponent = (reactElement) => {
   let component;
+  const { props } = reactElement;
 
   if (typeof reactElement.type === 'function') {
     try {
-      component = reactElement.type();
+      component = reactElement.type(props);
     } catch {
       const instance = new reactElement.type();
+      instance.props = props;
       component = instance.render();
     }
   } else {
