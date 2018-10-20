@@ -11,8 +11,8 @@ const getElementOrComponent = (reactElement) => {
     try {
       component = reactElement.type(props);
     } catch {
-      const instance = new reactElement.type();
-      instance.props = props;
+      const ComponentClass = reactElement.type;
+      const instance = new ComponentClass(props);
       component = instance.render();
     }
   } else {
@@ -24,20 +24,18 @@ const getElementOrComponent = (reactElement) => {
 
 const createDomElement = (reactElement) => {
   const component = getElementOrComponent(reactElement);
-
   const domElement = typeof component === 'string'
     ? document.createElement(component)
     : createDomElement(component);
 
-  if (reactElement.props && reactElement.props.children) {
-    reactElement.props.children.forEach(child => {
-
+  reactElement.props.children.forEach(child => {
+    if (child) {
       const childElement = typeof child === 'string'
         ? document.createTextNode(child)
         : createDomElement(child);
 
       domElement.appendChild(childElement);
-    });
-  }
+    }
+  });
   return domElement;
 };

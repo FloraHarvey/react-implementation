@@ -57,7 +57,7 @@ describe('render', () => {
     });
 
     ReactDOM.render(
-      { type: Element },
+      { type: Element, props: { children: [] } },
       document.getElementById('root')
     );
 
@@ -81,7 +81,7 @@ describe('render', () => {
     }
 
     ReactDOM.render(
-      { type: Component },
+      { type: Component, props: { children: [] } },
       document.getElementById('root')
     );
 
@@ -101,7 +101,7 @@ describe('render', () => {
     });
 
     ReactDOM.render(
-      { type: Element, props: { name: 'world' } },
+      { type: Element, props: { name: 'world', children: [] } },
       document.getElementById('root')
     );
 
@@ -114,6 +114,10 @@ describe('render', () => {
       '</div>';
 
       class Component {
+        constructor(props) {
+          this.props = props;
+        }
+
         render() {
           return {
             type: 'div',
@@ -125,7 +129,7 @@ describe('render', () => {
       }
 
     ReactDOM.render(
-      { type: Component, props: { name: 'world' } },
+      { type: Component, props: { name: 'world', children: [] } },
       document.getElementById('root')
     );
 

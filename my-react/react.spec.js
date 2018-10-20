@@ -15,6 +15,21 @@ describe('createElement', () => {
     });
   });
 
+  it('given a child that is null, it returns an object with children equal to null', () => {
+    expect(React.createElement('div', null, null)).toEqual({
+      type: 'div',
+      props: { children: [null] },
+    });
+  });
+
+  it('given no child arguments, it returns an object with children equal to an empty array', () => {
+    expect(React.createElement('div', null)).toEqual({
+      type: 'div',
+      props: { children: [] },
+    });
+  });
+
+
   it('given a child that is also a react element it returns a nested object', () => {
     const childElement = React.createElement('div', { name: 'child' }, 'Hello', 'world')
     expect(React.createElement('div', { name: 'parent' }, childElement, 'secondChild')).toEqual({
