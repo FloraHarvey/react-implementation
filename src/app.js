@@ -2,15 +2,18 @@ import './index.css';
 import ReactDOM from '../my-reactDOM';
 import React from '../my-react';
 
-// TODO: make the following work:
-// const element = React.createElement('div', null, `Hello World`);
-// ReactDOM.render(element, document.getElementById('root'));
+const HelloWorld = (props) => React.createElement('div', null, 'Hello ', props.name);
+
+class App extends React.Component {
+
+  render() {
+    return React.createElement(HelloWorld, {name: 'world'}, null);
+  }
+}
 
 window.onload = () => {
-  const child = React.createElement('div', null, 'Child element');
-  const element = () => React.createElement('div', null, child);
   ReactDOM.render(
-    { type: element },
+    React.createElement(App, null, null),
     document.getElementById('root'),
   );
 };
